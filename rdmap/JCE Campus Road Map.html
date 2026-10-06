@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JCE Campus Road Map</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#efe9dc;--card:#fffdf8;--ink:#17142e;--mut:#6d6a82;--line:#ddd5c3;--blank:#fffdf8;--acc:#5b3df5}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0c1b;--card:#171630;--ink:#f1efff;--mut:#9a97b8;--line:#2e2c4e;--blank:#171630;--acc:#a595ff}}
+:root[data-theme="dark"]{--bg:#0d0c1b;--card:#171630;--ink:#f1efff;--mut:#9a97b8;--line:#2e2c4e;--blank:#171630;--acc:#a595ff}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Segoe UI',system-ui,-apple-system,Helvetica,Arial,sans-serif}
+header{max-width:760px;margin:auto;padding:30px 16px 6px}
+h1{font-size:clamp(34px,9vw,60px);margin:0;letter-spacing:-2px;line-height:1}
+h1 span{color:var(--acc)}
+.sub{color:var(--mut);font-size:14px;margin-top:8px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:8px;overflow-x:auto;padding:12px 16px;max-width:760px;margin:auto}
+nav a{flex:none;text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:8px 14px;border-radius:99px;font-size:13px;font-weight:700}
+main{max-width:760px;margin:auto;padding:0 16px 50px}
+section{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:20px 14px;margin:14px 0;box-shadow:0 10px 30px rgba(20,10,60,.08)}
+h2{text-align:center;font-size:clamp(26px,6.5vw,42px);line-height:1.05;margin:4px 0 12px;letter-spacing:-1px}
+svg.m{width:100%;height:auto;display:block}
+svg text{font-family:inherit;font-weight:800;text-anchor:middle;dominant-baseline:central}
+.lg{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px 18px;margin-top:14px}
+.lg div{display:flex;gap:10px;align-items:flex-start;font-size:13px;font-weight:700;line-height:1.35}
+.lg i{flex:none;width:30px;height:30px;border-radius:8px}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="var(--ink)"/></marker></defs></svg>
+<header><h1>JCE <span>Campus</span></h1><div class="sub">Road Map &middot; Registration &middot; Main Block &middot; New Block</div></header>
+<nav><a href="#c">Campus</a><a href="#g">Ground</a><a href="#f1">First</a><a href="#f2">Second</a><a href="#f3">Third</a><a href="#f4">Fourth</a><a href="#nb">New Block</a></nav>
+<main id="main"></main>
+<script>
+const X=(s)=>String(s).replace(/&/g,'&amp;');
+const B=(x,y,w,h,f,t,o={})=>{let s=`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.rx??6}" fill="${f}" ${o.b?`stroke="var(--ink)" stroke-width="2"`:''}/>`;
+ if(t){const c=o.c||'#fff',fs=o.fs||15,L=String(t).split('|'),cx=x+w/2,cy=y+h/2;
+ s+=`<text fill="${c}" font-size="${fs}" ${o.v?`transform="rotate(${o.v} ${cx} ${cy})"`:''}>`+L.map((l,i)=>`<tspan x="${cx}" y="${cy+(i-(L.length-1)/2)*fs*1.15}">${X(l)}</tspan>`).join('')+'</text>'}return s};
+const K=(x,y,w,h)=>B(x,y,w,h,'var(--blank)','',{b:1});
+const ST=(x,y,w=58,h=30)=>B(x,y,w,h,'#2a10a8','STAIRS',{fs:10,rx:2});
+const EL=(x,y,w=97,h=30,t='Elevator')=>B(x,y,w,h,'#2a10a8',t,{fs:13,rx:2});
+const SE=(x,y,w,h,v)=>B(x,y,w,h,'#2a10a8','SIDE ENTRANCE',{fs:10,rx:2,v});
+const P=(x,y,w,m)=>{const cx=x+w/2,u=w/100;return B(x,y,w,w,m?'#226699':'#e8566f','',{rx:12})+`<circle cx="${cx}" cy="${y+30*u}" r="${11*u}" fill="#fff"/>`+(m?`<rect x="${cx-16*u}" y="${y+45*u}" width="${32*u}" height="${26*u}" rx="${8*u}" fill="#fff"/><rect x="${cx-9*u}" y="${y+60*u}" width="${7*u}" height="${25*u}" rx="${3*u}" fill="#fff"/><rect x="${cx+2*u}" y="${y+60*u}" width="${7*u}" height="${25*u}" rx="${3*u}" fill="#fff"/>`:`<path d="M${cx},${y+45*u} L${cx+22*u},${y+80*u} H${cx-22*u} Z" fill="#fff"/>`)};
+const AR=d=>`<path d="${d}" fill="none" stroke="var(--ink)" stroke-width="2.4" marker-end="url(#ar)"/>`;
+const ENT=()=>`<path d="M432,1015 v-0 h0" /><rect x="431" y="1015" width="62" height="28" fill="var(--ink)"/><rect x="443" y="1015" width="38" height="16" fill="var(--card)"/><path d="M462,1050 l-14,22 h10 v14 h8 v-14 h10 z" fill="var(--ink)"/>`;
+const frame=(top)=>`<rect x="52" y="195" width="820" height="820" rx="10" fill="none" stroke="var(--ink)" stroke-width="5"/><rect x="195" y="337" width="535" height="535" rx="6" fill="none" stroke="var(--ink)" stroke-width="4"/>`+top;
+const fl=(inner,h=1230)=>`<svg class="m" viewBox="40 180 850 ${h-180}">${inner}</svg>`;
+const leg=a=>'<div class="lg">'+a.map(e=>`<div><i style="background:${e[0]}"></i><span>${e[1].replace(/\|/g,'<br>')}</span></div>`).join('')+'</div>';
+const sec=(id,t,svg,l)=>`<section id="${id}"><h2>${t}</h2>${svg}${l?leg(l):''}</section>`;
+let H='';
+// CAMPUS
+H+=sec('c','JCE Campus',`<svg class="m" viewBox="110 150 700 1115">
+<rect x="128" y="163" width="668" height="981" fill="var(--blank)" stroke="var(--ink)" stroke-width="3"/>
+${B(215,168,581,140,'#3f7a00','',{rx:0})}${B(231,168,92,213,'#ff2b2b','CANTEEN',{fs:13,rx:0})}${B(405,168,254,140,'#c5b49a','BOYS HOSTEL',{c:'#111',fs:17,rx:0})}<ellipse cx="532" cy="296" rx="50" ry="15" fill="#a88a40"/><text x="532" y="296" font-size="9" fill="#111">ENTRANCE</text>
+${B(325,308,471,73,'#3d3d44','',{rx:0})}${B(128,381,67,763,'#3d3d44','',{rx:0})}${B(195,385,26,404,'#3d3d44','',{rx:0})}${B(128,597,67,180,'#ff2b2b','CANTEEN',{fs:13,rx:0})}
+${B(221,381,311,408,'#aa8b44','',{rx:0})}${B(285,409,188,312,'#e8566f','MAIN BLOCK',{fs:26,rx:0})}${B(360,664,45,24,'#1d09a8','Elevator',{fs:9,rx:0})}
+${B(481,409,25,50,'#f4f4f4','SIDE|ENTRANCE',{c:'#111',fs:8,rx:0})}${B(248,721,25,50,'#f4f4f4','SIDE|ENTRANCE',{c:'#111',fs:8,rx:0})}${B(481,721,25,50,'#f4f4f4','SIDE|ENTRANCE',{c:'#111',fs:8,rx:0})}
+<path d="M310,789 A70,45 0 0 1 450,789 Z" fill="#f5e52f"/><text x="380" y="770" font-size="12" fill="#111">RECEPTION</text>
+${B(514,571,25,82,'#ff2b2b','CAFE',{fs:12,v:-90,rx:0})}${B(532,381,48,763,'#3d3d44','',{rx:0})}
+${B(580,381,216,382,'#aed2dc','NEW BLOCK',{c:'#111',fs:24,rx:0})}<ellipse cx="590" cy="627" rx="16" ry="48" fill="#a88a40"/><text transform="rotate(90 591 627)" x="591" y="627" font-size="9" fill="#111">ENTRANCE</text>
+${B(195,789,312,130,'#3d3d44','',{rx:0})}${B(195,840,311,30,'#3f7a00','',{rx:0})}${B(507,789,73,355,'#3d3d44','',{rx:0})}
+<text x="198" y="894" font-size="22" fill="#fff" style="text-anchor:start">REGISTRATION</text>
+${B(195,919,126,221,'#3f7a00','CRICKET|COURT',{c:'#111',fs:19,rx:0})}${B(321,919,186,221,'#f5e52f','BASKETBALL|COURT',{c:'#111',fs:21,rx:0})}
+<path d="M580,832 A42,42 0 0 0 580,916 Z" fill="#464a56"/><text x="695" y="902" font-size="30" fill="var(--ink)">PARKING</text>${B(581,958,66,168,'#8a0a4b','',{rx:0})}
+${AR('M530,1121 V830 H380 V800')}${AR('M530,893 H368')}${AR('M555,1121 V908 H575')}
+${B(487,1121,112,22,'#17787f','ENTRANCE GATE',{fs:11,rx:0})}
+${B(110,1167,700,83,'#000','Tambaram to Velachery Road',{fs:22,rx:0})}</svg>`);
+const mbRoom=(x,w,y,h,f,t,o)=>B(x,y,w,h,f,t,{fs:17,...o});
+// GROUND
+H+=sec('g','MAIN BLOCK<br>GROUND FLOOR',fl(frame(`${ST(54,197)}${ST(788,197,58)}${SE(872,195,22,85,90)}${SE(852,878,22,85,90)}
+${ST(268,874,58)}${EL(413,874)}${ST(597,874,58)}${P(59,784,92,0)}<text x="138" y="903" font-size="8" fill="var(--ink)">M0001</text>
+${K(54,941,64,72)}${B(118,941,75,72,'#f7e82f','M001',{c:'#111',fs:19})}${B(193,941,92,72,'#f7e82f','M002',{c:'#111',fs:19})}${K(286,941,70,72)}${K(357,941,56,72)}
+${B(413,941,96,72,'#2a10a8','MAIN|ENTRANCE',{fs:13,rx:2})}${K(509,941,42,72)}${K(551,941,40,72)}${B(591,941,93,72,'#ff7a1a','M005',{fs:19})}${B(685,941,93,72,'#ff7a1a','M006',{fs:19})}${K(779,941,91,72)}
+${AR('M462,940 V915 H240 V938')}${AR('M462,915 H690 V938')}${AR('M872,235 H815 V228')}${ENT()}`),1100)+
+'',[['#f7e82f','MINDSPARK - Dept. of IT|M001, M002'],['#ff7a1a','MINDSPARK - Dept. of AI&ML - M005|CYPHORA (WH) - Dept. of AI&ML - M006']]);
+// FIRST
+H+=sec('f1','FIRST FLOOR',fl(frame(`${ST(54,197)}${ST(812,197,58)}${P(676,197,77,1)}${B(59,580,76,72,'#ff00b8','ML103',{fs:17})}${P(59,793,80,1)}${P(780,793,86,0)}
+${ST(268,874,58)}${EL(413,874)}${ST(597,874,58)}
+${K(59,952,94,60)}${B(155,952,93,60,'#9fd05a','M102',{fs:17})}${B(250,950,93,62,'#9fd05a','M103',{fs:17})}${K(345,952,68,60)}${K(415,952,94,60)}${B(511,954,106,56,'#f58220','M104',{fs:17})}${B(619,954,87,56,'#f58220','M105',{fs:17})}${B(708,952,89,60,'#ff9000','M106',{fs:17})}${K(799,952,71,60)}
+${AR('M298,902 V925 H200 V950')}${AR('M298,925 V950')}${AR('M298,925 H752 V950')}${ENT()}`),1100),
+[['#ff9000','MINDSPARK, VINTAVIZ - Dept of AI&DS|M104, M105, M106'],['#9fd05a','SYNAPSE - Dept. of ECE|M102, M103'],['#ff00b8','GATE BOUNTY - Dept. of ECE|ML103']]);
+// SECOND
+H+=sec('f2','SECOND FLOOR',fl(frame(`${ST(52,193,58)}${ST(812,193,58)}${P(668,199,73,1)}${P(56,802,86,0)}${P(773,802,90,1)}
+${K(56,260,92,148)}${K(56,410,90,236)}${B(56,647,92,58,'#ff9000','ML204,|ML205',{fs:15})}${K(56,707,88,90)}${K(750,274,115,252)}${K(753,528,112,270)}
+${ST(268,874,58)}${EL(413,874)}${ST(597,874,58)}
+${B(54,953,92,60,'#ff9000','ML201,|ML202',{fs:15})}${B(147,954,92,58,'#07a3ee','M201',{fs:17})}${B(244,954,90,58,'#d32f2f','M202',{fs:17})}${B(337,954,76,58,'#07a3ee','M203',{fs:17})}${B(415,954,92,58,'#ff2b2b','Auditorium',{fs:14})}${K(509,956,192,56)}${K(703,954,160,58)}
+${AR('M298,902 V910 H76 V950')}${AR('M315,902 V925 H290 V950')}${AR('M612,902 V925 H555')}${AR('M628,902 V925 H652 V952')}${ENT()}`),1100),
+[['#a00000','MINDSPARK- Dept. of CSBS|M202'],['#59aeff','FLIPSTER - Dept. OF CSBS|M201, M203'],['#ff9000','WHO LOCKED YOU?|- Dept. of IT|ML201, 202, 204, 205']]);
+// THIRD
+H+=sec('f3','THIRD FLOOR',fl(frame(`${ST(50,193,58)}${ST(812,193,58)}${P(58,790,85,1)}${P(781,787,84,0)}
+${K(60,265,86,274)}${B(58,543,91,162,'#3f7a00','ML303',{fs:17})}${K(58,709,90,77)}${K(781,267,84,180)}${K(781,449,84,180)}${K(781,631,84,152)}
+${ST(268,874,58)}${EL(428,874,96)}${ST(597,874,58)}
+${B(55,955,93,57,'#59aeff','ML302',{fs:16})}${B(150,956,92,56,'#a00000','M301',{fs:17})}${B(244,954,93,58,'#a00000','M302',{fs:17})}${B(339,956,74,56,'#ff00b8','M303',{fs:16})}${K(415,956,166,56)}${B(585,956,145,56,'#8e1fbf','M304',{fs:17})}${K(733,956,135,56)}
+${AR('M298,902 V912 H195 V952')}${AR('M316,902 V925 H290 V952')}${AR('M627,902 V935 H375 V952')}<rect x="462" y="1015" width="62" height="28" fill="var(--ink)"/><rect x="474" y="1015" width="38" height="16" fill="var(--card)"/><path d="M493,1050 l-14,22 h10 v14 h8 v-14 h10 z" fill="var(--ink)"/>`),1100),
+[['#59aeff','VIZ YOUR WAY - DEPT OF AI&DS|ML302'],['#3f7a00','NEXUS - DEPT OF BME|ML303'],['#a00000','ORATIO - DEPT OF AI&DS|M301,M302'],['#ff00b8','FLIPSTER - DEPT|OF CSBS|M303'],['#8e1fbf','TRISPARK - DEPT OF AI&ML|M304']]);
+// FOURTH
+H+=sec('f4','FOURTH FLOOR',fl(frame(`${B(53,197,177,38,'#ff00b8','ML401   ML402',{fs:17,rx:0})}${B(230,197,86,38,'#3a8586','ML403',{fs:16,rx:0})}${B(316,197,264,38,'#9fd05a','ML404  ML405  ML406',{fs:16,rx:0})}${K(581,197,43,38)}${B(625,197,112,38,'#d96220','ML408',{fs:16,rx:0})}${P(739,199,38,0)}${ST(822,197,47,46)}
+${B(778,275,90,58,'#d96220','ML409',{fs:17,rx:0})}${B(778,337,90,56,'#3a8586','ML410',{fs:17,rx:0})}${K(778,399,90,91)}${B(778,494,90,274,'#a00000','SEMINAR|HALL',{fs:14,rx:0})}${K(778,771,90,111)}${K(778,889,90,121)}
+${EL(413,874,97)}${AR('M795,230 V258')}${ENT()}`),1100),
+[['#9fd05a','SITE 2 SYNC - DEPT OF CSE|ML404,ML405,ML406'],['#a00000','ORATIO - DEPT OF CSE|SEMINAR HALL'],['#d96220','TRISPARK - DEPT OF AI&ML|ML408,ML409'],['#3a8586','ESCAPE ROOM 2.0 - DEPT OF CS|ML403,ML410'],['#ff00b8','ORATIO - DEPT OF CS|ML401,ML402']]);
+// NEW BLOCK
+const row=(y,h,items,stl,elx,elw,y2)=>'';
+const NS=(x,y)=>B(x,y,53,18,'#2a10a8','STAIRS',{fs:8,rx:2});
+H+=sec('nb','NEW BLOCK',`<svg class="m" viewBox="40 130 830 1000">
+<text x="470" y="185" font-size="42" fill="var(--ink)">3<tspan font-size="22" dy="-14">rd</tspan><tspan dy="14"> Floor</tspan></text>
+${K(115,240,64,114)}${K(184,238,84,116)}${K(275,238,84,116)}${NS(363,324)}${B(420,238,63,116,'#2a10a8','Elevator',{fs:12,rx:2})}${NS(486,325)}${B(534,241,82,112,'#8a0a4b','N303',{fs:18,rx:0})}${B(617,241,84,112,'#8a0a4b','N302',{fs:18,rx:0})}${B(703,241,84,112,'#8a0a4b','N301',{fs:18,rx:0})}${P(56,296,58,1)}${P(790,285,66,0)}${AR('M510,355 V382 H660 V356')}
+<text x="470" y="432" font-size="42" fill="var(--ink)">2<tspan font-size="22" dy="-14">nd</tspan><tspan dy="14"> Floor</tspan></text>
+${K(115,495,65,110)}${B(182,495,86,110,'#d6368a','N205',{fs:18,rx:0})}${B(269,495,90,110,'#9fd05a','N204',{fs:18,rx:0})}${NS(363,576)}${B(410,489,75,116,'#2a10a8','Elevator',{fs:12,rx:2})}${NS(489,582)}${B(539,498,84,110,'#9fd05a','NL201',{fs:18,rx:0})}${K(625,499,74,108)}${B(701,499,84,110,'#d6368a','N201',{fs:18,rx:0})}${P(56,549,58,1)}${AR('M512,606 V634 H225 V606')}${AR('M512,634 H315 V606')}${AR('M512,606 V620 H582 V610')}${AR('M512,634 H742 V610')}
+<text x="470" y="713" font-size="42" fill="var(--ink)">1<tspan font-size="22" dy="-14">st</tspan><tspan dy="14"> Floor</tspan></text>
+${K(123,767,60,110)}${B(185,767,86,110,'#a88a40','N105',{fs:18,rx:0})}${B(272,767,86,110,'#a88a40','N104',{fs:18,rx:0})}${NS(370,848)}${B(418,761,66,116,'#2a10a8','Elevator',{fs:12,rx:2})}${NS(486,848)}${B(532,767,82,110,'#9a1ac0','N103',{fs:18,rx:0})}${B(616,767,84,110,'#9a1ac0','N102',{fs:18,rx:0})}${B(701,767,84,110,'#9a1ac0','N101',{fs:18,rx:0})}${P(53,810,65,1)}${P(787,810,66,0)}${AR('M506,877 V928 H228 V877')}${AR('M506,877 V903 H658 V879')}
+<text x="470" y="962" font-size="42" fill="var(--ink)">Ground Floor</text>
+${K(114,995,234,110)}${NS(350,1076)}${B(410,989,64,116,'#2a10a8','Elevator',{fs:12,rx:2})}${K(476,992,304,112)}${P(45,1038,65,1)}${P(783,1036,66,0)}</svg>`,
+[['#9a1ac0','SINISTER SCHEMES - DEADLY DEEDS|2.0 - DEPT OF ECE|N101,N102,N103'],['#8a0a4b','CINEPHILIA - DEPT OF CS|N301,N302,N303'],['#9fd05a','THINK TANK - DEPT OF MBA|N204,NL201'],['#d6368a','POTPOURRI - DEPT OF MBA & S&H|N201,N205'],['#a88a40','CUE BATTLE - DEPT OF IT & S&H|N104,N105']]);
+document.getElementById('main').innerHTML=H;
+</script></body></html>
